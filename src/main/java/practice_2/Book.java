@@ -9,16 +9,27 @@ public class Book {
         this.author = Author;
     }
 
-    String getTitle() { return this.title; }
+    String getTitle() {
+        return this.title;
+    }
 
-    String getAuthor() { return this.author; }
+    String getAuthor() {
+        return this.author;
+    }
 
-    void setTitle(String newTitle) { this.title = newTitle; }
+    void setTitle(String newTitle) {
+        this.title = newTitle;
+    }
 
-    void setAuthor(String newAuthor) { this.author = newAuthor; }
+    void setAuthor(String newAuthor) {
+        this.author = newAuthor;
+    }
 
-    public String printInfo() { return title + author;}
+    public String printInfo() {
+        return title + author;
+    }
 
-    void print() {System.out.println("Название книги: " + title + ", автор книги: " + author);}
-
+    void print() {
+        System.out.println("Название книги: " + title + ", автор книги: " + author);
+    }
 }

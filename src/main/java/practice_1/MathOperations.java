@@ -14,6 +14,9 @@ public class MathOperations {
     }
 
     public static double divide(int x, int y) {
+        if (y == 0) {
+            System.out.println("Ошибка: деление на ноль");
+        }
         return (x / (double)y);
     }
 
@@ -25,9 +28,9 @@ public class MathOperations {
         System.out.println("Разность двух чисел: " + subResult);
 
         int multResult = multiply(4, 9);
-        System.out.println("Произведение двух чисел равно: " + multResult);
+        System.out.println("Произведение двух чисел: " + multResult);
 
-        double divResult = divide(9, 3);
+        double divResult = divide(9, 0);
         System.out.println("Результат деления двух чисел: " + divResult);
     }
 
