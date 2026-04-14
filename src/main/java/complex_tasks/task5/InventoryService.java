@@ -29,10 +29,12 @@ public class InventoryService {
     }
 
     public List<Product> filterByPrice(double minPrice) {
-        return inventory.values().stream()
+        return List.copyOf(
+                inventory.values().stream()
                 .flatMap(List::stream)
                 .filter(p -> p.getPrice() >= minPrice)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList())
+        );
     }
 
     public List<Product> getAllByCategory(String category) {

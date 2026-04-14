@@ -5,7 +5,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 public class EntityManager<T extends Entity> {
-    private CopyOnWriteArrayList<T> entities = new CopyOnWriteArrayList<>();
+    private final CopyOnWriteArrayList<T> entities = new CopyOnWriteArrayList<>();
 
     public void add(T entity) {
         entities.add(entity);
@@ -16,7 +16,7 @@ public class EntityManager<T extends Entity> {
     }
 
     public List<T> getAll() {
-        return new ArrayList<>(entities);
+        return List.copyOf(entities);
     }
 
     public List<T> filterByAge(int min, int max) {

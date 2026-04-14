@@ -16,8 +16,8 @@ public class MovieService<T extends Number> {
     }
 
     public double getAverageRating(Movie movie) {
-        List<Rating<T>> movieRatings = ratings.get(movie);
-        if (movieRatings == null || movieRatings.isEmpty()) {
+        List<Rating<T>> movieRatings = List.copyOf(ratings.getOrDefault(movie, List.of()));
+        if (movieRatings.isEmpty()) {
             throw new IllegalArgumentException("Нет оценок для фильма");
         }
 
@@ -28,14 +28,16 @@ public class MovieService<T extends Number> {
     }
 
     public List<Movie> getSortedMoviesByRating() {
-        return ratings.entrySet().stream()
+        return List.copyOf(
+                ratings.entrySet().stream()
                 .filter(e -> !e.getValue().isEmpty())
                 .sorted((e1, e2) -> Double.compare(
                         average(e2.getValue()),
                         average(e1.getValue())
                 ))
                 .map(Map.Entry::getKey)
-                .collect(Collectors.toList());
+                .collect(Collectors.toList())
+        );
     }
 
     private double average(List<Rating<T>> ratings) {

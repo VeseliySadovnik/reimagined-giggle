@@ -94,4 +94,18 @@ class UserValidatorTest {
         assertDoesNotThrow(() -> validator.validate(user));
     }
 
+    @Test
+    void testValidate_ValidationDisabled_DoesNotThrow() {
+        UserValidator.validationEnabled = false;
+        try {
+            User userInvalidEmail = new User("Alice", 25, "no-at-symbol");
+            User userInvalidAge = new User("alice", 15, "bad@domain");
+
+            assertDoesNotThrow(() -> validator.validate(userInvalidEmail));
+            assertDoesNotThrow(() -> validator.validate(userInvalidAge));
+        } finally {
+            UserValidator.validationEnabled = true; // восстанавливаем после теста
+        }
+    }
+
 }

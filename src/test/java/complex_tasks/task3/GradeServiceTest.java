@@ -34,5 +34,14 @@ public class GradeServiceTest {
         assertThrows(IllegalArgumentException.class, () ->
                 service.getAverageBySubject("Geography"));
 }
+
+    @Test
+    void testAverageGrade_NoGradesForSubject_ThrowsException() {
+        GradeService<Integer> service = new GradeService<>();
+        service.addGrade(new StudentGrade<>("Ivan", "Math", 90));
+
+        assertThrows(IllegalArgumentException.class, () ->
+                service.getAverageBySubject("Physics"));
+    }
 }
 
